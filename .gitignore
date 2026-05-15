@@ -216,3 +216,34 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Next.js and node dependencies
+node_modules/
+.next/
+out/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp*
+.yarn/
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# ADK and Reasoning Engine environment configs
+deployment_metadata.json
+app/app_utils/.requirements.txt
+
+# Environment and Key files
+.env*
+.envrc
+*.pem
+
+# TypeScript and Build Caches
+*.tsbuildinfo
+.vercel/
+.abstra/
+.pnpm-debug.log*
+
+
