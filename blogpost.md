@@ -179,10 +179,8 @@ The **Active Knowledge Wiki Pattern** represents a fundamental paradigm shift. B
 
 Are you ready to move beyond the limitations of black-box vector search?
 
+
 ***
 
 *For full implementation guides, deployment templates, and code repositories, refer to the project's [instructions.md](file:///Users/sgardezi/work/projects/knowldege-agent-claim-adk/instructions.md).*
 
----
-TAG=agy
-CONV=d007f6e4-c2a0-42a7-8351-65300d2d0ad6
