@@ -40,7 +40,7 @@ graph TD
     A[Raw Claim Documents: PDFs, Emails, Images] --> B[Extractor Agent]
     B -->|Extracts Multimodal Facts| C[Synthesizer Agent]
     
-    subgraph GCS Persistent Claim Wiki [gs://my-wiki-bucket/CLM-2026-001/]
+    subgraph gcs_wiki ["gs://my-wiki-bucket/CLM-2026-001/"]
         D[index.md]
         E[log.md]
         F[schema.md]
@@ -58,8 +58,8 @@ graph TD
     I -->|Updates nav catalog| D
     I -->|Appends history trace| E
     
-    J[Next.js Web UI Graph Dashboard] -->|Read-only access via IAP & GCS| GCS Persistent Claim Wiki
-    K[Orchestrator Scoped Query] -->|Metadata-Aware Auditing| GCS Persistent Claim Wiki
+    J[Next.js Web UI Graph Dashboard] -->|Read-only access via IAP & GCS| gcs_wiki
+    K[Orchestrator Scoped Query] -->|Metadata-Aware Auditing| gcs_wiki
 ```
 
 ### The Multi-Agent Pipeline (ADK-Powered)
