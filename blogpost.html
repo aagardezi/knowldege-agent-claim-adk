@@ -143,6 +143,30 @@
             margin: 40px 0;
         }
         
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 0.95rem;
+        }
+        
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            text-align: left;
+            vertical-align: top;
+        }
+        
+        th {
+            background-color: #f1f3f4;
+            color: #1b3a4b;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
         blockquote {
             border-left: 4px solid var(--primary-color);
             padding-left: 20px;
@@ -241,6 +265,41 @@ The Orchestrator is configured with <strong>strict anti-hallucination safety rul
 <blockquote>
 <p><em>&quot;Can you summarise the claim: CLM-2026-001?&quot;</em></p>
 </blockquote>
+<h3>🥊 Feature Comparison: Passive RAG vs. Active Wiki Agent</h3>
+<table>
+<thead>
+<tr>
+<th align="left">Feature / Dimension</th>
+<th align="left">Passive RAG (e.g., Vertex AI Search)</th>
+<th align="left">Active Knowledge Agent Wiki</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Synthesis Quality</strong></td>
+<td align="left">Passive accumulation of text. Merges conflicting facts into a single, flat description without questioning relationships.</td>
+<td align="left">Active semantic synthesis. Isolates claims, builds an organized ontology, and maintains a verified claim timeline.</td>
+</tr>
+<tr>
+<td align="left"><strong>Data Inconsistency Handling</strong></td>
+<td align="left"><strong>Blind Acceptance.</strong> Accepts that a rear-end auto collision caused mold remediation and stripped roof shingles.</td>
+<td align="left"><strong>Contradiction Detection.</strong> Detects and flags conflicting facts across multiple files as <code>contested</code> for human audit.</td>
+</tr>
+<tr>
+<td align="left"><strong>Temporal Awareness</strong></td>
+<td align="left"><strong>Time-Blind.</strong> Fails to notice if a repair estimate is dated years before or after the actual accident.</td>
+<td align="left"><strong>Timeline Verification.</strong> Compares dates across FNOL, estimates, and memos to identify chronological anomalies.</td>
+</tr>
+<tr>
+<td align="left"><strong>Mathematical Auditing</strong></td>
+<td align="left"><strong>None.</strong> Accepts reported totals without validating if the line items sum up correctly.</td>
+<td align="left"><strong>Automatic Math Validation.</strong> Audits final payments against estimates and raises alerts on discrepancy.</td>
+</tr>
+<tr>
+<td align="left"><strong>Transparency &amp; Editability</strong></td>
+<td align="left"><strong>None.</strong> Binary vector database that humans cannot read, audit, or easily edit.</td>
+<td align="left"><strong>Plain Markdown in GCS.</strong> Fully readable and editable by human claims adjusters directly via a Web UI.</td>
+</tr>
+</tbody></table>
 <h3>🥊 The Summarization Outputs Side-by-Side</h3>
 <h4>📄 Passive RAG (Vertex AI Search) Response:</h4>
 <blockquote>

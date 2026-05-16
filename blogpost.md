@@ -146,6 +146,15 @@ The document set contains 30 files (PDFs) detailing a vehicle collision, but inj
 
 We posed the exact same conversational prompt to both systems:
 > *"Can you summarise the claim: CLM-2026-001?"*
+### 🥊 Feature Comparison: Passive RAG vs. Active Wiki Agent
+
+| Feature / Dimension | Passive RAG (e.g., Vertex AI Search) | Active Knowledge Agent Wiki |
+| :--- | :--- | :--- |
+| **Synthesis Quality** | Passive accumulation of text. Merges conflicting facts into a single, flat description without questioning relationships. | Active semantic synthesis. Isolates claims, builds an organized ontology, and maintains a verified claim timeline. |
+| **Data Inconsistency Handling** | **Blind Acceptance.** Accepts that a rear-end auto collision caused mold remediation and stripped roof shingles. | **Contradiction Detection.** Detects and flags conflicting facts across multiple files as `contested` for human audit. |
+| **Temporal Awareness** | **Time-Blind.** Fails to notice if a repair estimate is dated years before or after the actual accident. | **Timeline Verification.** Compares dates across FNOL, estimates, and memos to identify chronological anomalies. |
+| **Mathematical Auditing** | **None.** Accepts reported totals without validating if the line items sum up correctly. | **Automatic Math Validation.** Audits final payments against estimates and raises alerts on discrepancy. |
+| **Transparency & Editability** | **None.** Binary vector database that humans cannot read, audit, or easily edit. | **Plain Markdown in GCS.** Fully readable and editable by human claims adjusters directly via a Web UI. |
 
 ### 🥊 The Summarization Outputs Side-by-Side
 
