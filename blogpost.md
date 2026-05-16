@@ -1,6 +1,6 @@
 # Evolving Claims: Why the Active Knowledge Wiki Pattern Outperforms Traditional RAG for Evolving Complex Domains
 
-*Author: insurance-agent-claim-adk Team*
+*Author: Syed Gardezi sgardezi@google.com*
 *Date: May 2026*
 
 ---

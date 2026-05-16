@@ -246,14 +246,21 @@ app/app_utils/.requirements.txt
 .abstra/
 .pnpm-debug.log*
 
-# Local ADK Session Databases
+# Local ADK Runtime & Session Databases
+.adk/
+**/.adk/
 session.db
 session.db-journal
 session.db-wal
 session.db-shm
+**/session.db
+**/session.db-journal
+**/session.db-wal
+**/session.db-shm
 *.db
 *.db-journal
 *.sqlite3
+
 
 
 
