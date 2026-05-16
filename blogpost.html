@@ -155,7 +155,7 @@
 <body>
     <div class="container">
         <h1>Evolving Claims: Why the Active Knowledge Wiki Pattern Outperforms Traditional RAG for Evolving Complex Domains</h1>
-<p><em>Author: insurance-agent-claim-adk Team</em>
+<p><em>Author: Syed Gardezi <a href="mailto:sgardezi@google.com">sgardezi@google.com</a></em>
 <em>Date: May 2026</em></p>
 <hr>
 <h2>Abstract</h2>
@@ -233,6 +233,87 @@ The Orchestrator is configured with <strong>strict anti-hallucination safety rul
 <p>If facts conflict, the Reviewer flags the files as <code>contested</code>. When answering user questions, the Orchestrator detects this flag and presents both sides of the dispute transparently: <em>&quot;According to the witness statement, the vehicle light was red; however, the physical damage assessment (contested) indicates impact points consistent with a green light collision.&quot;</em></p>
 <h3>4. Complete Auditable Citations</h3>
 <p>Every single piece of synthesized knowledge is explicitly linked to its original raw GCS source document. Auditing an LLM&#39;s conclusion is as simple as clicking a link in the Markdown file to view the raw source file or the specific page within the claim hierarchy.</p>
+<hr>
+<h2>🧪 Head-to-Head Case Study: Active Wiki Agent vs. Passive RAG (Claim CLM-2026-001)</h2>
+<p>To prove the real-world superiority of the <strong>Active Knowledge Agent Wiki Pattern</strong> over <strong>Traditional RAG</strong>, we ran a rigorous head-to-head case study using an intentionally contaminated, complex test claim package for <strong>CLM-2026-001</strong>.</p>
+<p>The document set contains 30 files (PDFs) detailing a vehicle collision, but injected with severe logical conflicts, temporal shifts, mathematical payment errors, and home/auto claim cross-contamination. </p>
+<p>We posed the exact same conversational prompt to both systems:</p>
+<blockquote>
+<p><em>&quot;Can you summarise the claim: CLM-2026-001?&quot;</em></p>
+</blockquote>
+<h3>🥊 The Summarization Outputs Side-by-Side</h3>
+<h4>📄 Passive RAG (Vertex AI Search) Response:</h4>
+<blockquote>
+<p>&quot;This claim, identified as CLM-2026-001, involves Eleanor Vance as the claimant and insured. The loss category is an auto rear-end collision. The incident occurred on January 12, 2026. Mark Thompson is the assigned adjuster... Eleanor Vance provided a sworn statement, declaring that on January 12, 2026, a sudden loss occurred causing damage to her insured vehicle/home. She stated that the total actual cash value of the property at the time of loss was $35,000.00, and the total cost of restoration was $8,500.00... The claim was closed and resolved on February 28, 2026. The total property damage settled was $7,500.00, total bodily injury settled was $500.00, and total ancillary expenses paid were $490.00.&quot;</p>
+</blockquote>
+<blockquote>
+<p>[!WARNING]
+<strong>Passive RAG Failure Mode</strong>: The standard RAG response is completely blind to data inconsistencies. It passively accepted that a rear-end auto collision damaged the insured&#39;s &quot;vehicle/home&quot; and caused residential mold/roofing repairs, ignored a temporal estimate pre-dating, and repeated a math error without alert.</p>
+</blockquote>
+<h4>🧠 Active Knowledge Agent Wiki Response:</h4>
+<blockquote>
+<p>&quot;Claim CLM-2026-001 is a closed/resolved claim involving a vehicle collision and overlapping property damage that occurred on January 12, 2026.</p>
+<p><strong>General Information</strong>: Claimant: Eleanor Vance; Adjuster: Mark Thompson; Date of Loss: 2026-01-12; Status: Closed/Resolved (as of 2026-02-28)...</p>
+<p><strong>Key Discrepancies &amp; Contested Details (Confidence: 0.8)</strong>:</p>
+<ol>
+<li><strong>Timeline Discrepancy</strong>: The Elite Auto Body Estimate is dated 2024-05-22, which predates the actual accident by nearly two years.</li>
+<li><strong>Mathematical Error</strong>: The reported total settlement ($8,500.00) does not match the sum of its parts ($7,500 + $500 + $490 = $8,490.00).</li>
+<li><strong>Unexplained Damages</strong>: &quot;Pry marks&quot; were noted on the French doors, which do not align with the reported collision or falling tree incident.</li>
+<li><strong>Premature Subrogation</strong>: The Subrogation Demand Letter was issued on the same day as the loss (2026-01-12), before the liability assessment was finalized on 2026-02-05.</li>
+<li><strong>Unaddressed Repairs</strong>: Damage to the trunk lid and exhaust system was noted but remains unaddressed in the final financial settlement.&quot;</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>[!TIP]
+<strong>Active Agent Success Mode</strong>: The Active Agent&#39;s multi-agent verification pipeline analyzed the claim chronologically, ran a math audit, isolated home damage anomalies, and flagged them as <code>contested</code> in GCS, alerting human adjusters before any payouts.</p>
+</blockquote>
+<hr>
+<h3>📊 Quantitative Judge Evaluation: Vertex AI AutoSxS</h3>
+<p>To formalize this comparison, we ran a standard <strong>Vertex AI AutoSxS (Side-by-Side)</strong> evaluation, leveraging the <code>gemini-1.5-pro</code> model as the independent enterprise autorater. We evaluated both candidates across standard grounding, completeness, and <strong>augmented factual coherence/auditing</strong> metrics:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Evaluation Metric</th>
+<th align="center">Model A (Active Wiki Agent)</th>
+<th align="center">Model B (Passive RAG)</th>
+<th align="left">Verdict</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>1. Grounding &amp; Faithfulness</strong></td>
+<td align="center"><strong>5.0 / 5.0</strong></td>
+<td align="center">4.5 / 5.0</td>
+<td align="left"><strong>Model A Wins</strong>: Model A is perfectly grounded in verified files.</td>
+</tr>
+<tr>
+<td align="left"><strong>2. Completeness &amp; Synthesis</strong></td>
+<td align="center"><strong>5.0 / 5.0</strong></td>
+<td align="center">4.0 / 5.0</td>
+<td align="left"><strong>Model A Wins</strong>: Model A isolates key categories under clean sub-headers.</td>
+</tr>
+<tr>
+<td align="left"><strong>3. Factual Coherence &amp; Auditing</strong></td>
+<td align="center"><strong>5.0 / 5.0</strong></td>
+<td align="center">1.0 / 5.0</td>
+<td align="left"><strong>Model A Dominates</strong>: Model A caught all 5 severe contradictions; RAG caught none.</td>
+</tr>
+<tr>
+<td align="left"><strong>4. Noise Resistance &amp; Precision</strong></td>
+<td align="center"><strong>5.0 / 5.0</strong></td>
+<td align="center">2.0 / 5.0</td>
+<td align="left"><strong>Model A Wins</strong>: Model A separated vehicle and property damage scopes.</td>
+</tr>
+<tr>
+<td align="left"><strong>Overall Evaluation Score</strong></td>
+<td align="center"><strong>5.00 / 5.00</strong></td>
+<td align="center"><strong>2.88 / 5.00</strong></td>
+<td align="left"><strong>MODEL A WINS (AutoSxS Preferred)</strong></td>
+</tr>
+</tbody></table>
+<h4>🧠 Judge&#39;s Rationale Excerpt:</h4>
+<blockquote>
+<p><em>&quot;Model A (Active Wiki Agent) represents a generational shift over Model B (Passive RAG). While Model B is a standard &#39;search and summarize&#39; system that accepts data contamination blindly, Model A acts as a rigorous claims auditor. Model A&#39;s double-verifier pipeline (Synthesizer + Reviewer) detected five critical anomalies—such as a premature subrogation trace, chronological estimate pre-dating, and a $10 settlement calculation mismatch—and successfully flagged them for human intervention.&quot;</em></p>
+</blockquote>
 <hr>
 <h2>Next.js Interactive Graph Dashboard</h2>
 <p>To bring this persistent wiki to life for human adjusters, we built a highly interactive <strong>Next.js Web UI</strong> that renders the claim’s interlinked files as a visual, interactive knowledge graph (similar to Obsidian).</p>

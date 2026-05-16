@@ -15,25 +15,33 @@
 import logging
 
 import pytest
+import pytest_asyncio
 from google.adk.events.event import Event
 
-from app.agent_runtime_app import AgentEngineApp
 
-
-@pytest.fixture
-def agent_app(monkeypatch: pytest.MonkeyPatch) -> AgentEngineApp:
+@pytest_asyncio.fixture
+async def agent_app(monkeypatch: pytest.MonkeyPatch):
     """Fixture to create and set up AgentEngineApp instance"""
     # Set integration test flag to mock external services
     monkeypatch.setenv("INTEGRATION_TEST", "TRUE")
 
-    from app.agent_runtime_app import agent_runtime
+    from app.agent_runtime_app import AgentEngineApp, logs_bucket_name, adk_app
+    from google.adk.artifacts import GcsArtifactService, InMemoryArtifactService
 
-    agent_runtime.set_up()
-    return agent_runtime
+    app_instance = AgentEngineApp(
+        app=adk_app,
+        artifact_service_builder=lambda: (
+            GcsArtifactService(bucket_name=logs_bucket_name)
+            if logs_bucket_name
+            else InMemoryArtifactService()
+        ),
+    )
+    app_instance.set_up()
+    return app_instance
 
 
 @pytest.mark.asyncio
-async def test_agent_stream_query(agent_app: AgentEngineApp) -> None:
+async def test_agent_stream_query(agent_app) -> None:
     """
     Integration test for the agent stream query functionality.
     Tests that the agent returns valid streaming responses.
@@ -61,7 +69,8 @@ async def test_agent_stream_query(agent_app: AgentEngineApp) -> None:
     assert has_text_content, "Expected at least one event with text content"
 
 
-def test_agent_feedback(agent_app: AgentEngineApp) -> None:
+@pytest.mark.asyncio
+async def test_agent_feedback(agent_app) -> None:
     """
     Integration test for the agent feedback functionality.
     Tests that feedback can be registered successfully.
