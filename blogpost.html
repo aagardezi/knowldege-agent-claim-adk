@@ -267,6 +267,40 @@ The Orchestrator is configured with <strong>strict anti-hallucination safety rul
 <p>[!TIP]
 <strong>Active Agent Success Mode</strong>: The Active Agent&#39;s multi-agent verification pipeline analyzed the claim chronologically, ran a math audit, isolated home damage anomalies, and flagged them as <code>contested</code> in GCS, alerting human adjusters before any payouts.</p>
 </blockquote>
+<h3>🔍 Deep-Dive: The 5 Critical Anomalies Unmasked by the Active Agent</h3>
+<p>How did the Active Agent perform this deep reasoning? It used its multi-agent collaboration to cross-reference and audit the following:</p>
+<ol>
+<li><strong>The Multi-Claim Data Contamination (Logical Anomaly)</strong><ul>
+<li><em>The Data:</em> The Police Report (<code>03_police_incident_report.pdf</code>) and Witness Statements contain slash-separated descriptions: <em>&quot;Insured vehicle / property was severely damaged... intersection / wind event knocked tree...&quot;</em></li>
+<li><em>Passive RAG:</em> Blindly stated that the rear-end collision caused damage to the vehicle/home.</li>
+<li><em>Active Agent:</em> Recognized that an auto body shop estimate (<code>17_body_shop_repair_estimate_elite.pdf</code>) including &quot;roof shingles and mold remediation labor ($4,500)&quot; is highly irregular and flagged the overlap.</li>
+</ul>
+</li>
+<li><strong>The Chronological Time Warp (Temporal Anomaly)</strong><ul>
+<li><em>The Data:</em> The Elite Auto Body Estimate contains metadata/header dates from 2024-05-22, whereas the accident occurred on 2026-01-12.</li>
+<li><em>Passive RAG:</em> Completely missed the date difference.</li>
+<li><em>Active Agent:</em> Scanned the timeline, flagged the estimate as predating the accident by nearly two years, and marked the file status as <code>CONTESTED</code>.</li>
+</ul>
+</li>
+<li><strong>The $10 Payment Discrepancy (Mathematical Anomaly)</strong><ul>
+<li><em>The Data:</em> The Settlement Offer Letter (<code>28_settlement_offer_letter.pdf</code>) specifies a total offer of <strong>$8,500.00</strong>, but lists the parts as: Shop: $7,500; Medical: $500; Rental: $490.</li>
+<li><em>Passive RAG:</em> Simply listed both conflicting numbers in separate sentences without noticing.</li>
+<li><em>Active Agent:</em> Performed arithmetic validation: $7,500 + $500 + $490 = $8,490.00. It flagged the $10 math error as a contested discrepancy.</li>
+</ul>
+</li>
+<li><strong>The Premature Subrogation demand (Operational Anomaly)</strong><ul>
+<li><em>The Data:</em> The Subrogation Demand Letter (<code>26_subrogation_demand_letter.pdf</code>) was sent on the exact day of the accident (2026-01-12). However, the Adjuster&#39;s official Liability assessment memo (<code>25_internal_liability_assessment_memo.pdf</code>) was not finalized until 2026-02-05.</li>
+<li><em>Passive RAG:</em> Reported both dates as flat events.</li>
+<li><em>Active Agent:</em> Identified the operational risk of initiating subrogation recovery before formal liability assessment was complete.</li>
+</ul>
+</li>
+<li><strong>The Forgotten Exhaust System (Scope Anomaly)</strong><ul>
+<li><em>The Data:</em> The First Notice of Loss (FNOL) explicitly stated the impact caused substantial damage to the <em>&quot;rear bumper, trunk lid, and exhaust system.&quot;</em></li>
+<li><em>Passive RAG:</em> Omitted this detail or listed it without cross-checking.</li>
+<li><em>Active Agent:</em> Compared the FNOL to the final Elite repair invoice, noting that while the bumper was replaced, the trunk lid and exhaust system repairs were completely missing from the final settlement, leaving outstanding damage.</li>
+</ul>
+</li>
+</ol>
 <hr>
 <h3>📊 Quantitative Judge Evaluation: Vertex AI AutoSxS</h3>
 <p>To formalize this comparison, we ran a standard <strong>Vertex AI AutoSxS (Side-by-Side)</strong> evaluation, leveraging the <code>gemini-3.1-flash-light</code> model as the independent enterprise autorater. We evaluated both candidates across standard grounding, completeness, and <strong>augmented factual coherence/auditing</strong> metrics:</p>

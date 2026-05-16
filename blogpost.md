@@ -170,6 +170,31 @@ We posed the exact same conversational prompt to both systems:
 > [!TIP]
 > **Active Agent Success Mode**: The Active Agent's multi-agent verification pipeline analyzed the claim chronologically, ran a math audit, isolated home damage anomalies, and flagged them as `contested` in GCS, alerting human adjusters before any payouts.
 
+### 🔍 Deep-Dive: The 5 Critical Anomalies Unmasked by the Active Agent
+
+How did the Active Agent perform this deep reasoning? It used its multi-agent collaboration to cross-reference and audit the following:
+
+1. **The Multi-Claim Data Contamination (Logical Anomaly)**
+   * *The Data:* The Police Report (`03_police_incident_report.pdf`) and Witness Statements contain slash-separated descriptions: *"Insured vehicle / property was severely damaged... intersection / wind event knocked tree..."*
+   * *Passive RAG:* Blindly stated that the rear-end collision caused damage to the vehicle/home.
+   * *Active Agent:* Recognized that an auto body shop estimate (`17_body_shop_repair_estimate_elite.pdf`) including "roof shingles and mold remediation labor ($4,500)" is highly irregular and flagged the overlap.
+2. **The Chronological Time Warp (Temporal Anomaly)**
+   * *The Data:* The Elite Auto Body Estimate contains metadata/header dates from 2024-05-22, whereas the accident occurred on 2026-01-12.
+   * *Passive RAG:* Completely missed the date difference.
+   * *Active Agent:* Scanned the timeline, flagged the estimate as predating the accident by nearly two years, and marked the file status as `CONTESTED`.
+3. **The $10 Payment Discrepancy (Mathematical Anomaly)**
+   * *The Data:* The Settlement Offer Letter (`28_settlement_offer_letter.pdf`) specifies a total offer of **$8,500.00**, but lists the parts as: Shop: $7,500; Medical: $500; Rental: $490.
+   * *Passive RAG:* Simply listed both conflicting numbers in separate sentences without noticing.
+   * *Active Agent:* Performed arithmetic validation: $7,500 + $500 + $490 = $8,490.00. It flagged the $10 math error as a contested discrepancy.
+4. **The Premature Subrogation demand (Operational Anomaly)**
+   * *The Data:* The Subrogation Demand Letter (`26_subrogation_demand_letter.pdf`) was sent on the exact day of the accident (2026-01-12). However, the Adjuster's official Liability assessment memo (`25_internal_liability_assessment_memo.pdf`) was not finalized until 2026-02-05.
+   * *Passive RAG:* Reported both dates as flat events.
+   * *Active Agent:* Identified the operational risk of initiating subrogation recovery before formal liability assessment was complete.
+5. **The Forgotten Exhaust System (Scope Anomaly)**
+   * *The Data:* The First Notice of Loss (FNOL) explicitly stated the impact caused substantial damage to the *"rear bumper, trunk lid, and exhaust system."*
+   * *Passive RAG:* Omitted this detail or listed it without cross-checking.
+   * *Active Agent:* Compared the FNOL to the final Elite repair invoice, noting that while the bumper was replaced, the trunk lid and exhaust system repairs were completely missing from the final settlement, leaving outstanding damage.
+
 ---
 
 ### 📊 Quantitative Judge Evaluation: Vertex AI AutoSxS
