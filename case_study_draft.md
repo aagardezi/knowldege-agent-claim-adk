@@ -30,14 +30,38 @@ We asked both systems the exact same question:
 ---
 
 ### 🧠 2. Active Knowledge Agent Wiki Response
-> "Claim CLM-2026-001 is a closed/resolved claim involving a vehicle collision and overlapping property damage...
->
-> **Key Discrepancies & Contested Details (Confidence: 0.8):**
-> 1. **Timeline Discrepancy:** The Elite Auto Body Estimate is dated 2024-05-22, which predates the actual accident by nearly two years.
-> 2. **Mathematical Error:** The reported total settlement ($8,500.00) does not match the sum of its parts ($7,500 + $500 + $490 = $8,490.00).
-> 3. **Unexplained Damages:** "Pry marks" were noted on the French doors, which do not align with the reported collision or falling tree incident.
-> 4. **Premature Subrogation:** The Subrogation Demand Letter was issued on the same day as the loss (2026-01-12), before the liability assessment was finalized on 2026-02-05.
-> 5. **Unaddressed Repairs:** Damage to the trunk lid and exhaust system was noted but remains unaddressed in the final financial settlement."
+> "Claim CLM-2026-001 is a closed/resolved claim involving a vehicle collision and overlapping property damage that occurred on January 12, 2026.
+> 
+> **General Information**
+> - **Claimant:** Eleanor Vance
+> - **Adjuster:** Mark Thompson
+> - **Date of Loss:** 2026-01-12
+> - **Status:** Closed / Resolved (as of 2026-02-28)
+> - **Liability:** 100% fault attributed to the third party, James Miller, who was driving a 2018 Ford Explorer.
+> 
+> **Incident & Damages**
+> The incident occurred at approximately 14:15 on Grand Avenue.
+> - **Vehicle Damage:** The insured's 2022 Honda Civic sustained front and rear bumper damage and required a frame alignment check. Repairs were completed on 2026-02-15.
+> - **Property Damage:** Reported damages include stripped roof shingles, mold remediation, a collapsed interior ceiling, and broken French glass doors.
+> - **Bodily Injury:** Eleanor Vance sustained a left radius fracture, mild whiplash (neck soreness), and smoke inhalation. She was prescribed four weeks of physical therapy.
+> 
+> **Financial Summary**
+> - **Total Settlement:** Reported as $8,500.00 (finalized on 2026-02-22).
+> - **Property:** $7,500.00
+> - **Medical:** $500.00
+> - **Rental:** $490.00 (2025 Hyundai Elantra used from 2026-01-13 to 2026-02-15)
+> - **Deductible:** $500.00 (paid by Eleanor Vance)
+> - **Subrogation:** Active; a recovery demand for $8,500.00 was sent to James Miller's carrier.
+> 
+> **Key Discrepancies & Contested Details (Confidence: 0.8)**
+> Several significant inconsistencies have been identified in the claim records:
+> - **Timeline Discrepancy:** The Elite Auto Body Estimate is dated 2024-05-22, which predates the actual accident by nearly two years.
+> - **Mathematical Error:** The reported total settlement ($8,500.00) does not match the sum of its parts ($7,500 + $500 + $490 = $8,490.00).
+> - **Unexplained Damages:** "Pry marks" were noted on the French doors, which do not align with the reported collision or falling tree incident.
+> - **Premature Subrogation:** The Subrogation Demand Letter was issued on the same day as the loss (2026-01-12), before the liability assessment was finalized on 2026-02-05.
+> - **Unaddressed Repairs:** Damage to the trunk lid and exhaust system was noted but remains unaddressed in the final financial settlement.
+> 
+> Summary based on `summary/claim_overview.md`, `summary/policy_details.md`, and `settlement/final_settlement.md` as of 2026-05-16"
 
 > [!TIP]
 > **Active Agent Success Mode**: The Active Agent's double-verifier pipeline (Synthesizer + Reviewer) ran cross-file logical validation. By identifying these anomalies, it automatically marked the claim files as `contested` and rendered warning banners in the Web UI, protecting the insurer from potential fraud or error.
