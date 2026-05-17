@@ -230,7 +230,7 @@ How did the Active Agent perform this deep reasoning? It used its multi-agent co
 
 ### 📊 Quantitative Judge Evaluation: Vertex AI AutoSxS
 
-To formalize this comparison, we ran a standard **Vertex AI AutoSxS (Side-by-Side)** evaluation, leveraging the `gemini-3.1-flash-light` model as the independent enterprise autorater. We evaluated both candidates across standard grounding, completeness, and **augmented factual coherence/auditing** metrics:
+To formalize this comparison, we ran a standard **Vertex AI AutoSxS (Side-by-Side)** evaluation, leveraging the `gemini-3.1-flash-lite` model as the independent enterprise autorater. We evaluated both candidates across standard grounding, completeness, and **augmented factual coherence/auditing** metrics:
 
 | Evaluation Metric | Model A (Active Wiki Agent) | Model B (Passive RAG) | Verdict |
 | :--- | :---: | :---: | :--- |

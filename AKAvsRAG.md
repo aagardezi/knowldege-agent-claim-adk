@@ -9,7 +9,7 @@
 
 | Parameter | Configuration Value |
 | :--- | :--- |
-| **Judge Model** | `gemini-3.1-flash-light` (Enterprise Autorater) |
+| **Judge Model** | `gemini-3.1-flash-lite` (Enterprise Autorater) |
 | **Model A (Candidate)** | **Active Knowledge Agent Wiki Pattern (ADK-Based)** |
 | **Model B (Baseline)** | **Traditional RAG (Passive Vector-Search / Vertex AI Search)** |
 | **Prompt Template** | *"Can you summarise the claim: CLM-2026-001"* |
